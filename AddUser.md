@@ -26,7 +26,11 @@ as **all groups**. The fourth means ... that these privileges apply to **all com
 
 Exit like you would exit `vi`.  
 
-Finally, to delete a user
+Finally, to delete a user: 
+`userdel newuser`: - will simply remove `newuser` from `/etc/passwd`  
+`-r` : use this to delete the user's home directory 
+
+**remove from visudo**
 
 #### Utilities:  
 to see all users :  
