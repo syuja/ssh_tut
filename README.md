@@ -25,3 +25,8 @@ should be 600:  `chmod 700 ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_k
 `top` : used interactively; displays running processes and system statistics continuously  
 (`top` == table of processes that updates periodically)  
 `ps`  : used from scripts, displays a snapshot of running processes (`ps` == process status)  
+
+#### chmod review :  
+3 sets of permissions: _owner_, _group_, _other_   
+700 means that the owner has rwx permissions (4+2+1)   
+600 means that the owner has rw permissions (4+2)   
