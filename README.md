@@ -1,5 +1,47 @@
-## SSH : 
+## SSH Keys and Debugging :  
+  1. [Intro](#intro)  
+  2. [Creating the Keys] (#create)  
+  3. [Exchanging the Keys](#exch)  
+  4. [Debugging](#debug)  
 
+<a id = "intro"></a>
+#### Intro:  
+Setting up SSH keys provides a faster and secure way of logging into server. Once keys are exchanged  
+the user will no longer need to enter a password every time.  
+
+To set up the SSH key you will need to be able to sign in to the server using a password.  Otherwise,
+you will be unable to exchange the keys; this is a necessary part.  
+
+Setting up a key for one user doesn't set up a key for another user. For example, setting a key  
+as root will not also set up a key for the entire machine.   
+
+The general steps are: 
+  A. create a pair of keys  (private and public)
+  B. copy the public key onto the server  
+  C. connect to the server using the private key  
+
+
+<a id = "create"></a>
+#### Create the Keys:  
+Call `ssh-keygen` this will create a new key. If one already exists, you may choose to use that
+one. Simply hit `enter` until it is done.  
+The new key pair will have been created in the `~/.ssh/` directory.   
+  ![ls-key-pair](https://github.com/syuja/ssh_tut/blob/master/img/ls-key-pair.png)  
+  
+By default, the created keys are: `id_rsa`(private) and `id_rsa.pub`(public).  
+Keep the private key secret; don't share it with anyone. This will allow you to login to the server.  
+
+<a id = "exch"></a>
+#### Exchanging the Keys:  
+The public key can be shared freely, and it must be uploaded to the server that you wish to connect to.  
+Append the public key to the server under the `~/.ssh/authorized_keys` file.   
+This can be done in several ways. One ways is to use `ssh-copy-id -i <key_file> <username>@<ipaddress>`, which will copy it onto the  
+`~/.ssh/authorized_keys`.  
+
+Another way, is to log in to the server using password authentication. Navigating onto that 
+directory and pasting the public key at the end of `~/.ssh/authorized_keys`.   
+  
+<a id = "debug"></a>
 #### Debugging SSH:  
   
 `ssh -v <username>@<host>`: the more '-v's the more debugging information is displayed;
