@@ -72,3 +72,12 @@ should be 600:  `chmod 700 ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_k
 3 sets of permissions: _owner_, _group_, _other_   
 700 means that the owner has rwx permissions (4+2+1)   
 600 means that the owner has rw permissions (4+2)   
+
+
+  
+  
+Resources:   
+<sub><sup> https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2   </sub></sup>   
+<sub><sup> http://www.cyberciti.biz/faq/how-to-set-up-ssh-keys-on-linux-unix/   </sub></sup>  
+<sub><sup> https://help.ubuntu.com/community/SSH/OpenSSH/Keys   </sub></sup>  
+<sub><sup> https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server    </sub></sup>  
