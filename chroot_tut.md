@@ -49,7 +49,7 @@ image. Unpause the start up by pressing `Host` + `P` again.
 To verify the the cd has been mounted:  
   ![verify](https://github.com/syuja/ssh_tut/blob/master/img/verify.png)
 When the installation screen show up, click on `Try Ubuntu`.   
-  [!try_ubuntu](https://github.com/syuja/ssh_tut/blob/master/img/try_ubuntu.png)  
+  ![try_ubuntu](https://github.com/syuja/ssh_tut/blob/master/img/try_ubuntu.png)  
   
 At this point you should have a booted live Ubuntu cd.  
 
