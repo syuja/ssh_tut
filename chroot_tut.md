@@ -1,9 +1,13 @@
 ## CHROOT tutorial:  
   1. [Intro] (#intro)   
-  2. [Commands] (#cmd)  
-  3. [VirtualBox Live Cd](#live)  
-  4. []()
-  
+  2. [VirtualBox Live Cd](#live)    
+  3. [chroot] (#chroot)     
+  4. [Commands] (#cmd)    
+    
+
+**When creating the virtual machine for Hard Disk Type choose VIRTUAL HARD DISK**   
+**Otherwise you will be unable to access the files within, including `dev`,`proc`, `sys`.**  
+
 <a id = "intro"> </a>
 ### Intro: 
 After changing the file format of `/dev/vdb` to 'xfs ' in `/etc/fstab` the Magellan instances
@@ -51,9 +55,38 @@ To verify the the cd has been mounted:
 When the installation screen show up, click on `Try Ubuntu`.   
   ![try_ubuntu](https://github.com/syuja/ssh_tut/blob/master/img/try_ubuntu.png)  
   
-At this point you should have a booted live Ubuntu cd.  
+At this point you should have a booted live Ubuntu cd.  Now to **chroot**.
 
 
+<a id="chroot"></a>
+## CHROOT:  
+`chroot` will allow us to execute a terminal from within the broken machine.   
+That way we can fix `/etc/fstab`.  
+
+First, we have to the file system.  
+
+      #find the device containing the installation  
+      fdisk -l #for me it's /dev/sda1  
+      #then mount it
+      mount /dev/sda1 /mnt
+      #next mount necessary file systems for chroot  
+      mount --bind /proc /mnt/proc  
+      mount --bind /dev  /mnt/dev  
+      mount --bind /sys  /mnt/sys  
+      
+
+`proc` contains a list of running processes. `dev` the list of devices, and `sys` contains information about the system and  
+it's components.  
+
+      chroot /mnt /bin/bash  
+      #the symbol will change to root@ubuntu:/#  
+      nano /etc/fstab  
+
+Change it back to:  
+  ![original_fstab](https://github.com/syuja/ssh_tut/blob/master/img/original_fstab.png)  
+  
+
+<sub><sup> http://linoxide.com/linux-how-to/fixing-broken-initrd-image-linux/ </sup></sub>
 <a id = "cmd"> </a>
 ## Commands:  
 `chroot` - run a command or interactive shell with special root directory  
@@ -64,5 +97,6 @@ At this point you should have a booted live Ubuntu cd.
      chroot /mnt/mydrive /bin/bash  
   
   
-mkdir -p <--- -p flag creates missing directories if they're not there.
-mount -bind
+`mkdir -p` - `-p` flag creates missing directories if they're not there.
+`mount --bind` - mount attaches files to the system file hierarchy or tree to make them accessible; `--bind` allows  
+the same content to be accessible in two places. 
