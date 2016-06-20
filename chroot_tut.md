@@ -84,7 +84,11 @@ it's components.
 
 Change it back to:  
   ![original_fstab](https://github.com/syuja/ssh_tut/blob/master/img/original_fstab.png)  
-  
+
+The the options were changed to `xfs` instead of `ext4`, and `errors=remount-ro` was removed in order to make the system not  
+bootable.  
+
+After changing it back, restart it. The recovery disk should be removed automatically by Virtual Box.  
 
 <sub><sup> http://linoxide.com/linux-how-to/fixing-broken-initrd-image-linux/ </sup></sub>
 <a id = "cmd"> </a>
