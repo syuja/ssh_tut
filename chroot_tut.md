@@ -101,6 +101,7 @@ After changing it back, restart it. The recovery disk should be removed automati
      chroot /mnt/mydrive /bin/bash  
   
   
-`mkdir -p` - `-p` flag creates missing directories if they're not there.
-`mount --bind` - mount attaches files to the system file hierarchy or tree to make them accessible; `--bind` allows  
-the same content to be accessible in two places. 
+`mkdir -p` - `-p` flag creates missing directories if they're not there.   
+`mount --bind` - mount attaches files to the system file hierarchy or tree to make them accessible;   
+`--bind` - allows us to mount a part of an already-mounted file system to another location,   making  
+the filesystem accessible from two places; maps filesystem to two mounting points  
