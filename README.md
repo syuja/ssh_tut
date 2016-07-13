@@ -3,9 +3,18 @@
   2. [Creating the Keys] (#create)  
   3. [Exchanging the Keys](#exch)  
   4. [Debugging](#debug)  
+  
+
+**Note**:  
+Debugging `SSH` is easier from the server side.  
+Start an `sshd` in debug mode on port 2222, `/usr/bin/sshd -p 2222`, then connect with `ssh -p 2222 user@remotehost`.   
+
+Running `ssh -i -vvv user@remotehost`, prints out information that is not very helpful.   
 
 <a id = "intro"></a>
-#### Intro:  
+### Intro:  
+---  
+
 Setting up SSH keys provides a faster and secure way of logging into server. Once keys are exchanged  
 the user will no longer need to enter a password every time.  
 
@@ -22,7 +31,9 @@ The general steps are:
 
 
 <a id = "create"></a>
-#### Create the Keys:  
+### Create the Keys:  
+---  
+
 Call `ssh-keygen` this will create a new key. If one already exists, you may choose to use that
 one. Simply hit `enter` until it is done.  
 The new key pair will have been created in the `~/.ssh/` directory.   
@@ -32,7 +43,9 @@ By default, the created keys are: `id_rsa`(private) and `id_rsa.pub`(public).
 Keep the private key secret; don't share it with anyone. This will allow you to login to the server.  
 
 <a id = "exch"></a>
-#### Exchanging the Keys:  
+### Exchanging the Keys:   
+--- 
+
 The public key can be shared freely, and it must be uploaded to the server that you wish to connect to.  
 Append the public key to the server under the `~/.ssh/authorized_keys` file.   
 This can be done in several ways. One ways is to use `ssh-copy-id -i <key_file> <username>@<ipaddress>`, which will copy it onto the  
@@ -42,8 +55,10 @@ Another way, is to log in to the server using password authentication. Navigatin
 directory and pasting the public key at the end of `~/.ssh/authorized_keys`.   
   
 <a id = "debug"></a>
-#### Debugging SSH:  
-  
+### Debugging SSH:  
+---  
+**Run `sshd` from server side in debug mode.**   
+
 `ssh -v <username>@<host>`: the more '-v's the more debugging information is displayed;
 this debugs when connecting  
 `/usr/bin/sshd -d -p 2222` : sends debug output to stderr; this is for debugging on the server `-p` is the port 
@@ -63,12 +78,16 @@ your public keys in the `~/.ssh/authorized_keys` file. home directory only writa
 should be 600:  `chmod 700 ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_keys`   
 
 
-#### `ps` vs `top` :   
+#### `ps` vs `top` :    
+---  
+
 `top` : used interactively; displays running processes and system statistics continuously  
 (`top` == table of processes that updates periodically)  
 `ps`  : used from scripts, displays a snapshot of running processes (`ps` == process status)  
 
-#### chmod review :  
+### chmod review :   
+---  
+
 3 sets of permissions: _owner_, _group_, _other_   
 700 means that the owner has rwx permissions (4+2+1)   
 600 means that the owner has rw permissions (4+2)   
